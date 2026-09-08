@@ -48,3 +48,14 @@ map("n", "<leader>tt", "<cmd>split | terminal<CR>", { desc = "Terminal" })
 map("n", "<leader>l", "<cmd>Lazy<CR>", { desc = "Lazy" })
 map("n", "<leader>m", "<cmd>Mason<CR>", { desc = "Mason" })
 map("n", "<leader>x", "<cmd>source %<CR>", { desc = "Source current file" })
+
+-- Insert-mode cursor movement on Alt/Option + hjkl.
+-- Terminals must send Option as Alt (Meta); see notes in the README.
+map("i", "<M-h>", "<Left>", { desc = "Left" })
+map("i", "<M-j>", "<Down>", { desc = "Down" })
+map("i", "<M-k>", "<Up>", { desc = "Up" })
+map("i", "<M-l>", "<Right>", { desc = "Right" })
+map("i", "<M-b>", "<C-o>b", { desc = "Prev word" })
+map("i", "<M-w>", "<C-o>w", { desc = "Next word" })
+map("i", "<M-0>", "<C-o>0", { desc = "Line start" })
+map("i", "<M-4>", "<C-o>$", { desc = "Line end" })
