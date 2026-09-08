@@ -1,7 +1,19 @@
 return {
     {
         "mason-org/mason.nvim",
-        opts = {},
+        opts = {
+            ensure_installed = { "ruff", "stylua" },
+        },
+        config = function(_, opts)
+            require("mason").setup(opts)
+            local reg = require("mason-registry")
+            for _, name in ipairs(opts.ensure_installed) do
+                local ok, pkg = pcall(reg.get_package, name)
+                if ok and not pkg:is_installed() then
+                    pkg:install()
+                end
+            end
+        end,
     },
     {
         "mason-org/mason-lspconfig.nvim",
@@ -87,7 +99,6 @@ return {
                     m("<leader>rn", vim.lsp.buf.rename, "Rename")
                     m("<leader>ca", vim.lsp.buf.code_action, "Code action")
                     m("<leader>d", vim.diagnostic.open_float, "Line diagnostics")
-                    m("<leader>fm", function() vim.lsp.buf.format({ async = true }) end, "Format")
                     m("<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols")
                     m("<leader>fS", "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace symbols")
                     m("[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Prev diagnostic")
