@@ -11,6 +11,7 @@ return {
                 "lua_ls",
                 "pyright",
                 "ts_ls",
+                "terraformls",
             },
         },
     },
@@ -49,6 +50,10 @@ return {
                         end
                     end
                 end,
+            })
+
+            vim.lsp.config("terraformls", {
+                settings = { terraformls = { ignoreSingleFileWarning = true } },
             })
 
             vim.api.nvim_create_autocmd("LspAttach", {

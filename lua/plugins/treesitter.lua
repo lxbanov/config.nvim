@@ -19,6 +19,8 @@ return {
             "css",
             "rust",
             "toml",
+            "terraform",
+            "hcl",
         }
 
         require("nvim-treesitter").install(ensure_installed)
