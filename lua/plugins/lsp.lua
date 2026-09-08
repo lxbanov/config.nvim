@@ -56,6 +56,23 @@ return {
                 init_options = { ignoreSingleFileWarning = true },
             })
 
+            -- Neovim 0.11+ ships with virtual text off; show it, and use icons
+            -- in the sign column instead of E/W/I/H letters.
+            vim.diagnostic.config({
+                virtual_text = { spacing = 2, prefix = "●", source = "if_many" },
+                severity_sort = true,
+                update_in_insert = false,
+                float = { border = "rounded", source = "if_many" },
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = " ",
+                        [vim.diagnostic.severity.WARN] = " ",
+                        [vim.diagnostic.severity.INFO] = " ",
+                        [vim.diagnostic.severity.HINT] = " ",
+                    },
+                },
+            })
+
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(args)
                     local function m(lhs, rhs, desc)
