@@ -53,7 +53,7 @@ return {
             })
 
             vim.lsp.config("terraformls", {
-                settings = { terraformls = { ignoreSingleFileWarning = true } },
+                init_options = { ignoreSingleFileWarning = true },
             })
 
             vim.api.nvim_create_autocmd("LspAttach", {
