@@ -12,6 +12,7 @@ return {
             { "<leader>c", group = "code" },
             { "<leader>r", group = "refactor" },
             { "<leader>x", group = "trouble" },
+            { "<leader>g", group = "git" },
             { "g", group = "goto" },
             { "[", group = "prev" },
             { "]", group = "next" },
