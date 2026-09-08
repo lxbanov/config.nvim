@@ -29,16 +29,16 @@ map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- Keep cursor centered when jumping
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
-map("n", "n", "nzzzv")
-map("n", "N", "Nzzzv")
+map("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
+map("n", "n", "nzzzv", { desc = "Next match" })
+map("n", "N", "Nzzzv", { desc = "Prev match" })
 
 -- Paste over selection without clobbering the register
 map("x", "<leader>p", [["_dP]], { desc = "Paste without yanking" })
 
 -- Join lines without moving the cursor
-map("n", "J", "mzJ`z")
+map("n", "J", "mzJ`z", { desc = "Join lines" })
 
 -- Terminal
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
