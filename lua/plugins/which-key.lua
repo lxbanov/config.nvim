@@ -11,6 +11,7 @@ return {
             { "<leader>t", group = "terminal" },
             { "<leader>c", group = "code" },
             { "<leader>r", group = "refactor" },
+            { "<leader>x", group = "trouble" },
             { "g", group = "goto" },
             { "[", group = "prev" },
             { "]", group = "next" },

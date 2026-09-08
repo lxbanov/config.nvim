@@ -22,7 +22,6 @@ map("n", "<C-l>", "<C-w>l", { desc = "Window right" })
 -- Buffers
 map("n", "<S-h>", "<cmd>bprevious<CR>", { desc = "Prev buffer" })
 map("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next buffer" })
-map("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete buffer" })
 map("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", { desc = "Switch buffer" })
 
 -- Move selected lines
