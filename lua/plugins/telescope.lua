@@ -21,8 +21,28 @@ return {
         local telescope = require("telescope")
         telescope.setup({
             defaults = {
-                -- "file.ts  src/app/explore" instead of a right-truncated absolute path
-                path_display = { "filename_first" },
+                -- "file.ts  src/app/explore": filename first, then the directory
+                -- relative to cwd when inside it, otherwise with $HOME as "~".
+                path_display = function(_, path)
+                    local tail = vim.fs.basename(path)
+                    local dir = vim.fs.dirname(path)
+                    local cwd = vim.fn.getcwd()
+                    if dir == cwd then
+                        dir = ""
+                    elseif dir:sub(1, #cwd + 1) == cwd .. "/" then
+                        dir = dir:sub(#cwd + 2)
+                    else
+                        local home = vim.uv.os_homedir()
+                        if home and dir:sub(1, #home) == home then
+                            dir = "~" .. dir:sub(#home + 1)
+                        end
+                    end
+                    if dir == "" then
+                        return tail
+                    end
+                    local display = tail .. "  " .. dir
+                    return display, { { { #tail + 2, #display }, "TelescopeResultsComment" } }
+                end,
                 mappings = {},
             },
         })
