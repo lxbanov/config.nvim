@@ -42,6 +42,11 @@ map("n", "J", "mzJ`z", { desc = "Join lines" })
 
 -- Terminal
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+-- Jump straight to another window from the terminal, no escape step
+map("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Window left" })
+map("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Window down" })
+map("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Window up" })
+map("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Window right" })
 map("n", "<leader>tt", "<cmd>split | terminal<CR>", { desc = "Terminal" })
 
 -- Misc
