@@ -21,6 +21,8 @@ return {
         local telescope = require("telescope")
         telescope.setup({
             defaults = {
+                -- "file.ts  src/app/explore" instead of a right-truncated absolute path
+                path_display = { "filename_first" },
                 mappings = {},
             },
         })
