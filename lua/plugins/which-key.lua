@@ -4,6 +4,10 @@ return {
     opts = {
         preset = "helix",
         delay = 300,
+        -- <C-d>/<C-u> are remapped to "<C-d>zz" in keymaps.lua, and which-key
+        -- executes real mappings before checking its own scroll keys, so use
+        -- keys that are not mapped anywhere.
+        keys = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
         spec = {
             { "<leader>f", group = "find" },
             { "<leader>s", group = "split" },
