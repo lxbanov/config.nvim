@@ -30,6 +30,27 @@ return {
                 },
             })
 
+            -- Pyright does not discover .venv on its own unless the venv is
+            -- activated in the shell that started Neovim. Point it at the
+            -- project's .venv (or $VIRTUAL_ENV) before it starts.
+            vim.lsp.config("pyright", {
+                before_init = function(_, config)
+                    local root = config.root_dir or vim.fn.getcwd()
+                    local candidates = { root .. "/.venv/bin/python", root .. "/venv/bin/python" }
+                    if vim.env.VIRTUAL_ENV then
+                        table.insert(candidates, 1, vim.env.VIRTUAL_ENV .. "/bin/python")
+                    end
+                    for _, py in ipairs(candidates) do
+                        if py and vim.uv.fs_stat(py) then
+                            config.settings = config.settings or {}
+                            config.settings.python = config.settings.python or {}
+                            config.settings.python.pythonPath = py
+                            return
+                        end
+                    end
+                end,
+            })
+
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(args)
                     local function m(lhs, rhs, desc)
